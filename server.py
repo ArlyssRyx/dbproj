@@ -1,49 +1,56 @@
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, render_template, request
 app = Flask(__name__)
 
 @app.route('/')
-def hello_world():
+def index():
     return redirect(url_for('login'))
 
 @app.route('/login')
 def login():
-   return 'login'
+    return render_template('login.html')
 
-@app.route('/<user>/profile')
+@app.route('/loginredir',methods = ['POST', 'GET'])
+def loginredir():
+    if request.method == 'POST':
+        result = request.form
+        url = f'/user/{result["username"]}/profile'
+        return redirect(url)
+
+@app.route('/user/<user>/profile')
 def profile(user):
-    return f"{user} profile"
+    return render_template('profile.html', username = user)
 
-@app.route('/<user>/pull')
+@app.route('/user/<user>/pull')
 def pull(user):
-    return f"{user} pull"
+    return render_template('pull.html')
 
-@app.route('/<user>/builder')
+@app.route('/user/<user>/builder')
 def builder(user):
-    return f"{user} deck builder"
+    return render_template('builder.html')
 
-@app.route('/<user>/new_deck')
+@app.route('/user/<user>/new_deck')
 def new_deck(user):
-    return f"{user} new_deck"
+    return render_template('new_deck.html')
 
-@app.route('/<user>/stats')
+@app.route('/user/<user>/stats')
 def stats(user):
-    return f"{user} stats"
+    return render_template('stats.html')
 
-@app.route('/<user>/packs')
+@app.route('/user/<user>/packs')
 def packs(user):
-    return f"{user} packs"
+    return render_template('packs.html')
 
-@app.route('/<user>/pack/<pack_name>')
+@app.route('/user/<user>/pack/<pack_name>')
 def edit_pack(user,pack_name):
-    return f"{user} editing {pack_name}"
+    return render_template('edit_pack.html')
 
-@app.route('/<user>/new_pack')
+@app.route('/user/<user>/new_pack')
 def new_pack(user):
-    return f"{user} new_pack"
+    return render_template(new_pack)
 
-@app.route('/<user>/ccreate')
+@app.route('/user/<user>/ccreate')
 def ccreate(user):
-    return f"{user} card creator"
+    return render_template("ccreate.html")
 
 
 if __name__ == '__main__':
