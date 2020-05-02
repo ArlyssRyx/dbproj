@@ -16,6 +16,14 @@ def loginredir():
         url = f'/user/{result["username"]}/profile'
         return redirect(url)
 
+@app.route('/search')
+def login():
+    return render_template('search.html')
+
+@app.route('/searchres')
+def login():
+    return render_template('searchres.html')
+
 @app.route('/user/<user>/profile')
 def profile(user):
     return render_template('profile.html', username = user)
