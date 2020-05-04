@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Builder</title>
+    <title>Packs</title>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
@@ -22,21 +22,22 @@
 </head>
 <body>
 <div class="container pt-5 border align-content-center">
-    <h1>New Deck:</h1>
-    <form action="http://localhost:5000/user/{{ username }}/decks">
+    <form action="http://localhost:5000/user/{{ username }}/profile">
         <button type="submit">Back</button>
     </form>
     <hr/>
-    <form>
-        <select name="pulls">
-            <option>Saved Pulls Here</option>
-        </select>
-        <button>Load</button>
-        <h4>Available Cards:</h4>
-        <label><input type="checkbox"/>Card X</label> <br/>
-        Added Cards: XX <br/>
-        Deck Name: <input type="text"/> <br/>
-        <button type="submit">Save</button>
+    <h1>Your Packs:</h1>
+    <form action="http://localhost:5000/user/{{ username }}/builder">
+        <button type="submit">New Deck</button>
+    </form>
+    <form action="http://localhost:5000/user/{{ username }}/pack/a">
+        <button type="submit">Deck a</button>
+    </form>
+    <form action="http://localhost:5000/user/{{ username }}/pack/b">
+        <button type="submit">Deck b</button>
+    </form>
+    <form action="http://localhost:5000/user/{{ username }}/pack/c">
+        <button type="submit">Deck c</button>
     </form>
 
 

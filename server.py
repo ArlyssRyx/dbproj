@@ -49,11 +49,11 @@ def pull(user):
 
 @app.route('/user/<user>/builder')
 def builder(user):
-    return render_template('builder.html')
+    return render_template('builder.html',username=user)
 
 @app.route('/user/<user>/new_deck')
 def new_deck(user):
-    return render_template('new_deck.html')
+    return render_template('new_deck.html',username=user)
 
 @app.route('/user/<user>/stats')
 def stats(user):
@@ -61,19 +61,23 @@ def stats(user):
 
 @app.route('/user/<user>/packs')
 def packs(user):
-    return render_template('packs.html')
+    return render_template('packs.html',username=user)
+
+@app.route('/user/<user>/decks')
+def decks(user):
+    return render_template('decks.html',username=user)
 
 @app.route('/user/<user>/pack/<pack_name>')
 def edit_pack(user,pack_name):
-    return render_template('edit_pack.html')
+    return render_template('edit_pack.html',username=user)
 
 @app.route('/user/<user>/new_pack')
 def new_pack(user):
-    return render_template(new_pack)
+    return render_template('new_pack.html',username=user)
 
 @app.route('/user/<user>/ccreate')
 def ccreate(user):
-    return render_template("ccreate.html")
+    return render_template("ccreate.html",username=user)
 
 
 if __name__ == '__main__':
