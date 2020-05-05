@@ -75,9 +75,31 @@ def edit_pack(user,pack_name):
 def new_pack(user):
     return render_template('new_pack.html',username=user)
 
-@app.route('/user/<user>/ccreate')
-def ccreate(user):
-    return render_template("ccreate.html",username=user)
+@app.route('/user/<user>/ccredir',methods = ['POST', 'GET'])
+def ccredir(user):
+    if request.method == 'POST':
+        result = request.form
+        packname=result['packname']
+        url= f'/user/{user}/{packname}/ccreate'
+        return redirect(url)
+    else:
+        return redirect(f'/user/{user}/profile')
+
+@app.route('/user/<user>/<packname>/ccreate',methods = ['POST', 'GET'])
+def ccreate(user,packname):
+    cards_in_pack = get_cards_from_pack(packname)
+    if request.method == 'POST':
+        result = request.form
+        cardname = result['cardname']
+        cid = result['cid']
+        rarity = result['rarity']
+        game =result['gameid']
+        packgame = get_pack_gameid(packname)
+        create_card(game,cid,cardname,game,rarity)
+        add_card_to_pack(game,cid,packgame,packname)
+        cards_in_pack = get_cards_from_pack(packname)
+        return render_template("ccreate.html",username=user, packname=packname, name=cardname, cards=cards_in_pack)
+    return render_template("ccreate.html", username=user, packname=packname, cards=cards_in_pack)
 
 
 if __name__ == '__main__':

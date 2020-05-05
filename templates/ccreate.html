@@ -21,49 +21,48 @@
 </nav>
 </head>
 <body>
+
 <div class="container pt-5 border align-content-center">
-    <form action="http://localhost:5000/user/{{ username }}/profile">
+    <form action="http://localhost:5000/user/{{ username }}/new_pack">
         <button type="submit">Back</button>
     </form>
     <hr/>
     <h1>Add Cards to Pack:</h1>
-    <form action="http://localhost:5000/user/{{ username }}/profile">
+    <form action="http://localhost:5000/user/{{ username }}/{{ packname }}/ccreate" method="post">
         <div class="form-group">
-            CID: <input type="text"/> <br/>
-            Name: <input type="text"/> <br/>
+            CID: <input type="text" name="cid"/> <br/>
+            Name: <input type="text" name="cardname"/> <br/>
             Rarity:
-            <select>
+            <select name="rarity">
                 <option>Common</option>
                 <option>Rare</option>
                 <option>Ultra Rare</option>
                 <option>Super Rare</option>
                 <option>Secret Rare</option>
             </select>
+            Game:
+            <select name="gameid">
+                <option>Yu-Gi-Oh</option>
+                <option>MTG</option>
+                <option>Other</option>
+            </select>
         </div>
         <div class="form-group">
-            <button type="button">Add</button>
-            <button type="submit">Save Pack</button>
+            <button type="submit">Add</button>
         </div>
+    </form>
+    <form action="http://localhost:5000/user/{{ username }}/profile">
+            <button type="submit">Save Pack</button>
     </form>
 </div>
 <div class="container pt-5 border align-content-center">
     <h3>Cards Currently in Pack:</h3>
     <table >
-        <tr>
-            <td>Card Name 1</td>
-            <td>Card Rarity 1</td>
-            <td>Card ID 1</td>
-        </tr>
-        <tr>
-            <td>Card Name 2</td>
-            <td>Card Rarity 2</td>
-            <td>Card ID 2</td>
-        </tr>
-        <tr>
-            <td>Card Name 3</td>
-            <td>Card Rarity 3</td>
-            <td>Card ID 3</td>
-        </tr>
+        {% for item in cards %}
+            <tr>
+                <td>{{ item }}</td>
+            </tr>
+        {% endfor %}
     </table>
 </div>
 

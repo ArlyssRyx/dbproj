@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Newpack</title>
+    <title>Packs</title>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
@@ -21,46 +21,53 @@
 </nav>
 </head>
 <body>
+
 <div class="container pt-5 border align-content-center">
-    <form action="http://localhost:5000/user/{{ username }}/profilE">
+    <form action="http://localhost:5000/user/{{ username }}/new_pack">
         <button type="submit">Back</button>
     </form>
-    <h1>Pack Info</h1>
-    <form action="http://localhost:5000/user/{{ username }}/ccredir" METHOD="post">
+    <hr/>
+    <h1>Add Cards to Pack:</h1>
+    <form action="http://localhost:5000/user/{{ username }}/{{ packname }}/ccreate" method="post">
         <div class="form-group">
-        Pack Name: <input name="packname" type="text"/> <br/>
-        <select>
-            <option>Yu-Gi-Oh</option>
-            <option>MTG</option>
-            <option>Other</option>
-        </select>
-        </div>
-        <h1>Details:</h1>
-        <p>Rarity Types:</p>
-        <div class="form-group">
-            Common <input name="common" type="checkbox"/>
-            <input name="commoncount" type="number"/>
-        </div>
-        <div class="form-group">
-            Rare <input name="rare" type="checkbox"/>
-            <input name="rarecount" type="number"/>
+            CID: <input type="text" name="cid"/> <br/>
+            Name: <input type="text" name="cardname"/> <br/>
+            Rarity:
+            <select name="rarity">
+                <option>Common</option>
+                <option>Rare</option>
+                <option>Ultra Rare</option>
+                <option>Super Rare</option>
+                <option>Secret Rare</option>
+            </select>
         </div>
         <div class="form-group">
-            Ultra Rare <input name="urare" type="checkbox"/>
-            <input name="urarecount" type="number"/>
+            <button type="submit">Add</button>
         </div>
-        <div class="form-group">
-            Super Rare <input name="srare" type="checkbox"/>
-            <input name="srarecount" type="number"/>
-        </div>
-        <div class="form-group">
-            Secret Rare <input name="secrare" type="checkbox"/>
-            <input name="secrarecount" type="number"/>
-        </div>
-       <button type="submit">Next</button>
-
     </form>
-
+    <form action="http://localhost:5000/user/{{ username }}/profile">
+            <button type="submit">Save Pack</button>
+    </form>
+</div>
+<div class="container pt-5 border align-content-center">
+    <h3>Cards Currently in Pack:</h3>
+    <table >
+        <tr>
+            <td>Card Name 1</td>
+            <td>Card Rarity 1</td>
+            <td>Card ID 1</td>
+        </tr>
+        <tr>
+            <td>Card Name 2</td>
+            <td>Card Rarity 2</td>
+            <td>Card ID 2</td>
+        </tr>
+        <tr>
+            <td>Card Name 3</td>
+            <td>Card Rarity 3</td>
+            <td>Card ID 3</td>
+        </tr>
+    </table>
 </div>
 
 
